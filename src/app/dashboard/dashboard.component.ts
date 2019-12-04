@@ -285,15 +285,18 @@ export class DashboardComponent implements OnInit {
 
         for(let s=0;s<this.arrSeller.length;s++)
         {
+          let totalAmnoutperSeller=0;
+
           this.dataService.getAllSalesbySeller(this.arrSeller[s]._id).subscribe((stat:any)=>{
             this.arrSalesSeller=stat;
             this.numberOfSalesPerSeller=this.arrSalesSeller.length
             for(let k=0;k<this.arrSalesSeller.length;k++)
-            this.totalAmnoutperSeller+=this.arrSalesSeller[k].amount
-            this.num+=1;
-            this.statSeller.push({num:this.num,firstname:this.arrSeller[s].firstName,
+            totalAmnoutperSeller+=this.arrSalesSeller[k].amount
+            this.statSeller=[...this.statSeller,{num:s+1,firstname:this.arrSeller[s].firstName,
               lastname:this.arrSeller[s].lastName,
-              amount:this.totalAmnoutperSeller,number:this.numberOfSalesPerSeller})
+              amount:totalAmnoutperSeller,number:this.numberOfSalesPerSeller}].sort(
+                (s1,s2)=>s1.number<s2.number ? 1: -1 
+              )
 
                    /* ----------==========      todays sales Chart initialization    ==========---------- */
             
