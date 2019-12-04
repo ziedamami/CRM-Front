@@ -61,4 +61,12 @@ export class SellerService {
     );
   }
 
+  addSeller(seller): Observable<any> {
+    const url = `${apiUrl}/add_seller`;
+    return this.http.post(url, seller, httpOptions).pipe(
+      tap(_ => console.log(`added seller `)),
+      catchError(this.handleError<any>('addSeller'))
+    );
+  }
+
 }

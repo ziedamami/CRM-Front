@@ -13,8 +13,11 @@
         <div class="card">
           <div class="card-header card-header-danger">
             <h4 class="card-title ">Liste de tous les vendeurs</h4>
+
           </div>
           <div class="card-body">
+              <button type="button" class="btn btn-link" (click)="openModal('custom-modal-2')">Nouveau vendeur</button>
+
             <div class="table-responsive">
               <table class="table" *ngIf="arrSellers">
                 <thead class=" text-primary">
@@ -31,8 +34,9 @@
                     <td>{{seller.username}}</td>
                     <td>{{seller.hiringDate | date }}</td>
                     <td>
-                      <button type=button class="btn btn-danger"  (click)="delete(seller._id)">Supprimer</button>
-                      <button class="btn btn-primary" (click)="[openModal('custom-modal-1'),getSellerDetails(seller._id)]">Modifier</button>
+                      <button type=button class="btn btn-danger" (click)="delete(seller._id)">Supprimer</button>
+                      <button class="btn btn-primary"
+                        (click)="[openModal('custom-modal-1'),getSellerDetails(seller._id)]">Modifier</button>
                     </td>
                   </tr>
 
@@ -45,6 +49,85 @@
 
 
     </div>
+    <jw-modal id="custom-modal-2">
+      <h3>Ajouter Employé</h3>
+      <form [formGroup]="addsellerForm" (ngSubmit)="onaddFormSubmit(addsellerForm.value)">
+        <table>
+          <tr>
+            <td>
+              <label style="color: black;">Nom: </label>
+            </td>
+            <td>
+              <input formControlName="firstName" type="text">
+              <div *ngIf="submitted && sellerForm.controls.firstName.errors" class="error">
+                <div *ngIf="sellerForm.controls.firstName.errors.required">Champs
+                  obligatoire</div>
+              </div>
+            </td>
+            <td>
+              <label style="color: black;">Prénom: </label>
+            </td>
+            <td>
+              <input formControlName="lastName" type="text"><br>
+            </td>
+            <div *ngIf="submitted && sellerForm.controls.lastName.errors" class="error">
+              <div *ngIf="sellerForm.controls.lastName.errors.required">Champs
+                obligatoire</div>
+            </div>
+
+
+
+          </tr>
+          <tr>
+            <td>
+              <label style="color: black;">Pseudo: </label>
+            </td>
+            <td>
+              <input formControlName="username" type="text">
+              <div *ngIf="submitted && sellerForm.controls.firstName.errors" class="error">
+                <div *ngIf="sellerForm.controls.firstName.errors.required">Champs
+                  obligatoire</div>
+              </div>
+            </td>
+            <td>
+              <label style="color: black;">Mot de passe: </label>
+            </td>
+            <td>
+              <input formControlName="password" type="text"><br>
+            </td>
+            <div *ngIf="submitted && sellerForm.controls.lastName.errors" class="error">
+              <div *ngIf="sellerForm.controls.lastName.errors.required">Champs
+                obligatoire</div>
+            </div>
+
+
+
+          </tr>
+          <tr>
+            <td>
+              <label style="color: black;">Date d'embauche: </label>
+            </td>
+            <td>
+              <input formControlName="hiringDate" type="date">
+              <div *ngIf="submitted && sellerForm.controls.hiringDate.errors" class="error">
+                <div *ngIf="sellerForm.controls.hiringDate.errors.required">Champs
+                  obligatoire</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="btn btn-success" type="submit">Enregistrer</button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="closeModal('custom-modal-2');">Close</button>
+            </td>
+
+          </tr>
+        </table>
+
+      </form>
+    </jw-modal>
 
     <jw-modal id="custom-modal-1">
       <h3>Modifier Employé</h3>
@@ -52,53 +135,53 @@
         <table>
           <tr>
             <td>
-        <label style="color: black;">Nom: </label>
-      </td>
-      <td>
-        <input formControlName="firstName" type="text">
-        <div *ngIf="submitted && sellerForm.controls.firstName.errors" class="error">
-          <div *ngIf="sellerForm.controls.firstName.errors.required">Champs
-            obligatoire</div>
-        </div>
-      </td>
-      <td>
-        <label style="color: black;">Prénom: </label>
-      </td>
-      <td>
-        <input formControlName="lastName" type="text"><br>
-      </td>
-        <div *ngIf="submitted && sellerForm.controls.lastName.errors" class="error">
-          <div *ngIf="sellerForm.controls.lastName.errors.required">Champs
-            obligatoire</div>
-        </div>
-      
-      
-        
-  </tr>
-  <tr>
-    <td>
-        <label style="color: black;">Date d'embauche: </label>
-  </td>
-  <td>
-        <input formControlName="hiringDate" type="date">
-        <div *ngIf="submitted && sellerForm.controls.hiringDate.errors" class="error">
-          <div *ngIf="sellerForm.controls.hiringDate.errors.required">Champs
-            obligatoire</div>
-        </div>
-        </td>
-  </tr>
-        <tr>  
-          <td>    
-            <button class="btn btn-success" type="submit">Modifier</button>
-          </td>
-          <td>
-              <button class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
-          </td>
+              <label style="color: black;">Nom: </label>
+            </td>
+            <td>
+              <input formControlName="firstName" type="text">
+              <div *ngIf="submitted && sellerForm.controls.firstName.errors" class="error">
+                <div *ngIf="sellerForm.controls.firstName.errors.required">Champs
+                  obligatoire</div>
+              </div>
+            </td>
+            <td>
+              <label style="color: black;">Prénom: </label>
+            </td>
+            <td>
+              <input formControlName="lastName" type="text"><br>
+            </td>
+            <div *ngIf="submitted && sellerForm.controls.lastName.errors" class="error">
+              <div *ngIf="sellerForm.controls.lastName.errors.required">Champs
+                obligatoire</div>
+            </div>
 
-      </tr>
-      </table>
-      
-    </form>
+
+
+          </tr>
+          <tr>
+            <td>
+              <label style="color: black;">Date d'embauche: </label>
+            </td>
+            <td>
+              <input formControlName="hiringDate" type="date">
+              <div *ngIf="submitted && sellerForm.controls.hiringDate.errors" class="error">
+                <div *ngIf="sellerForm.controls.hiringDate.errors.required">Champs
+                  obligatoire</div>
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <button class="btn btn-success" type="submit">Modifier</button>
+            </td>
+            <td>
+              <button class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
+            </td>
+
+          </tr>
+        </table>
+
+      </form>
     </jw-modal>
 
 

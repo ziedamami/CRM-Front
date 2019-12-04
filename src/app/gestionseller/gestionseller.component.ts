@@ -20,12 +20,14 @@ export class GestionsellerComponent implements OnInit {
   };
 
   sellerForm: FormGroup;
+  addsellerForm: FormGroup;
   _id: string = '';
   firstName: string = '';
   lastName: string = '';
   username: string = '';
   password: string = '';
   hiringDate: Date = null;
+
 
   submitted = false;
   success = false;
@@ -37,6 +39,16 @@ export class GestionsellerComponent implements OnInit {
       lastName: new FormControl({ value: '' }, Validators.compose([Validators.required])),
       hiringDate: new FormControl({ value: '' }, Validators.compose([Validators.required])),
       username: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+    });
+
+    this.addsellerForm = this.formBuilder.group({
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      hiringDate: ['', Validators.required],
+      username: ['',Validators.required],
+      password: ['',Validators.required],
+
+
     });
   }
 
@@ -74,6 +86,23 @@ export class GestionsellerComponent implements OnInit {
       .subscribe(res => {
         location.reload();
 
+      }, (err) => {
+        console.log(err);
+      }
+      );
+  }
+
+  onaddFormSubmit(form: NgForm) {
+    this.submitted = true;
+    if (this.addsellerForm.invalid) {
+      return;
+    }
+    this.success = true;
+
+    this.service.addSeller(form)
+      .subscribe(res => {
+        location.reload();
+        console.log(form)
       }, (err) => {
         console.log(err);
       }
