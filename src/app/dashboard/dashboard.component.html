@@ -1,0 +1,136 @@
+
+<div class="main-content">
+        
+  <div class="container-fluid">
+        
+      <div class="row">
+            <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="card card-stats">
+                    </div>
+                </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-warning card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">content_copy</i>
+                      </div>
+                      <p class="card-category">Nombre de Vendeurs Disponibles</p>
+                      <h3 class="card-title">{{SellerNumber}}
+                          <small></small>
+                      </h3>
+                  </div>
+                 
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-success card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">store</i>
+                      </div>
+                      <p class="card-category">Revenu total Pour <br> Aujourd'hui</p>
+                      <h3 class="card-title">{{TotalAmount}} €</h3>
+                  </div>
+                  
+              </div>
+          </div>
+          <div class="col-lg-3 col-md-6 col-sm-6">
+              <div class="card card-stats">
+                  <div class="card-header card-header-danger card-header-icon">
+                      <div class="card-icon">
+                          <i class="material-icons">info_outline</i>
+                      </div>
+                      <p class="card-category">Nombre de ventes Aujourd'hui</p>
+                      <h3 class="card-title">{{TodaySales}}</h3>
+                  </div>
+                  
+              </div>
+              
+          </div>
+          
+      </div>
+      <div class="row">
+          
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-success">
+                      <div class="ct-chart" id="dailySalesChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <h4 class="card-title">Nombre de ventes pendants les 7 derniers jours</h4>
+                      <p class="card-category">
+                          <span class="text-success"> Nombre total des ventes :</span> {{TodaySales+dayBeforeSales+twoDaysBeforeSales+threeDaysBeforeSales+fourBeforeSales+fiveDaysBeforeSales+sixDaysBeforeSales}}</p>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                          <i class="material-icons"> </i> 
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-warning">
+                      <div class="ct-chart" id="websiteViewsChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <h4 class="card-title">Revenu pendant les 7 derniers jours</h4>
+                      <p class="card-category">
+                            <span class="text-success"> Total des revenus : :</span>  {{sixdaysBeforeTotalAmount+fivedaysBeforeTotalAmount+fourdaysBeforeTotalAmount+threedaysBeforeTotalAmount+twodaysBeforeTotalAmount+dayBeforeTotalAmount+TotalAmount}} €</p>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="col-md-4">
+              <div class="card card-chart">
+                  <div class="card-header card-header-danger">
+                      <div class="ct-chart" id="completedTasksChart"></div>
+                  </div>
+                  <div class="card-body">
+                      <h4 class="card-title">Completed Tasks</h4>
+                      <p class="card-category">Last Campaign Performance</p>
+                  </div>
+                  <div class="card-footer">
+                      <div class="stats">
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-lg-6 col-md-12">
+              <div class="card">
+                  <div class="card-header card-header-warning">
+                      <h4 class="card-title">Employees Stats</h4>
+                      <p class="card-category"></p>
+                  </div>
+                  <div class="card-body table-responsive">
+                      <table class="table table-hover">
+                          <thead class="text-warning">
+                              <th>Num</th>
+                              <th>Nom et Prenom</th>
+                              <th>Revenus des ventes</th>
+                              <th>Nombre des ventes</th>
+                          </thead>
+                          <tbody>
+                              <tr *ngFor="let statseller of statSeller">
+                                  
+                                  <td>{{statseller.num}}</td>
+                                  <td>{{statseller.firstname}} {{statseller.lastname}}</td>
+                                  <td>{{statseller.amount}}</td>
+                                  <td>{{statseller.number}}</td>
+                              </tr>
+                          </tbody>
+                      </table>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+
+</div>
+
