@@ -28,7 +28,7 @@ export class SaleService {
 
   
   getAllSales (): Observable<SaleResponse[]> {
-    return this.http.get<SaleResponse[]>('http://localhost:3000/api/all_sales/')
+    return this.http.get<SaleResponse[]>('http://localhost:8080/api/all_sales/')
       .pipe(
         tap(heroes => console.log('fetched slaes')),
         catchError(this.handleError('getsales', []))
@@ -36,7 +36,7 @@ export class SaleService {
   }
 
   getAllSalesbySeller (id): Observable<SaleResponse[]> {
-    return this.http.get<SaleResponse[]>('http://localhost:3000/api/seller_sales/'+id)
+    return this.http.get<SaleResponse[]>('http://localhost:8080/api/seller_sales/'+id)
       .pipe(
         tap(heroes => console.log('fetched sales')),
         catchError(this.handleError('getsales', []))

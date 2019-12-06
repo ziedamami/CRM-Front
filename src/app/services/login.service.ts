@@ -6,7 +6,7 @@ import { LoginResponse } from '../model/LoginResponse';
   providedIn: 'root'
 })
 export class LoginService {
-  private url='http://localhost:3000/login';
+  private url='http://localhost:8080/login';
 
   constructor(private  http: HttpClient, private router:Router) { 
 

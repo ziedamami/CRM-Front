@@ -8,7 +8,7 @@ import { catchError, tap } from 'rxjs/operators';
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
 };
-const apiUrl = "http://localhost:3000/api";
+const apiUrl = "http://localhost:8080/api";
 
 
 @Injectable({
