@@ -38,17 +38,17 @@ mongoose.connect(dbConfig.url, {
 require('./backend/routers/Seller.router')(app);
 require('./backend/routers/Sale.router')(app);
 
-app.use(express.static(__dirname + '/src/crm-application-zied'));
+app.use(express.static(__dirname + '/src'));
 
-app.get('/*', function(req,res) {
+app.get('/', function(req,res) {
     
-res.sendFile(path.join(__dirname+'/src/crm-application-zied/index.html'));
+res.sendFile(path.join(__dirname+'/src/index.html'));
 });
 
-const Authroute= require ('./auth/auth');
+const Authroute= require ('./backend/auth/auth');
 app.use(Authroute); 
 
 // listen for requests
 app.listen(8080, () => {
-    console.log("Server is listening on port 3000");
+    console.log("Server is listening on port 8080");
 });
