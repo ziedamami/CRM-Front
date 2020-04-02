@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   arrSales: SaleResponse[]; 
   arrSeller : SellerResponse[];
   SellerNumber:number;
+  total : number;
   TotalAmount:number=0;
   dayBeforeTotalAmount:number=0;
   twodaysBeforeTotalAmount:number=0;
@@ -34,6 +35,8 @@ export class DashboardComponent implements OnInit {
   numberOfSalesPerSellertoday:number=0;
   totalAmnoutperSeller : number=0;
   num:number=0;
+
+
 
 
 
@@ -100,6 +103,7 @@ export class DashboardComponent implements OnInit {
   };
   ngOnInit() {
    
+    console.log(typeof(this.twodaysBeforeTotalAmount));
       this.dataService.getAllSales().subscribe((sale:any)=>{
         new Date();
         
@@ -155,7 +159,8 @@ export class DashboardComponent implements OnInit {
 
               /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
-          
+            this.total=this.sixdaysBeforeTotalAmount+this.fivedaysBeforeTotalAmount+this.fourdaysBeforeTotalAmount+this.threedaysBeforeTotalAmount+this.twodaysBeforeTotalAmount+this.dayBeforeTotalAmount+this.TotalAmount;
+            console.log(this.total);
         const dataDailySalesChart: any = {
           labels: [
             new Date(new Date().getTime()-(6*24*60*60*1000)).toJSON().substr(5,5),
@@ -280,7 +285,7 @@ export class DashboardComponent implements OnInit {
       this.startAnimationForLineChart(completedTasksChart);
 
       this.sellerService.getSellers().subscribe((seller:any)=>{
-        this.arrSeller = seller;
+        this.arrSeller = seller.filter(vendeur=>vendeur.role=='vendeur');
         this.SellerNumber=this.arrSeller.length
 
         for(let s=0;s<this.arrSeller.length;s++)

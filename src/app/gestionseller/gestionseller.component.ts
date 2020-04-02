@@ -16,7 +16,7 @@ export class GestionsellerComponent implements OnInit {
   arrSellers: SellerResponse[] = [];
   seller: SellerResponse = {
     _id: '', firstName: '', lastName: '', username: '', password: '',
-    hiringDate: null,
+    hiringDate: null, address:' ', email: '', geographicalArea: '',phoneNumber: '',role:''
   };
 
   sellerForm: FormGroup;
@@ -26,6 +26,7 @@ export class GestionsellerComponent implements OnInit {
   lastName: string = '';
   username: string = '';
   password: string = '';
+  email:string='';
   hiringDate: Date = null;
 
 
@@ -39,6 +40,11 @@ export class GestionsellerComponent implements OnInit {
       lastName: new FormControl({ value: '' }, Validators.compose([Validators.required])),
       hiringDate: new FormControl({ value: '' }, Validators.compose([Validators.required])),
       username: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+      password: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+      email: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+      phoneNumber: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+      address: new FormControl({ value: '' }, Validators.compose([Validators.required])),
+      geographicalArea: new FormControl({ value: '' }, Validators.compose([Validators.required])),
     });
 
     this.addsellerForm = this.formBuilder.group({
@@ -47,6 +53,11 @@ export class GestionsellerComponent implements OnInit {
       hiringDate: ['', Validators.required],
       username: ['',Validators.required],
       password: ['',Validators.required],
+      email: ['',Validators.required],
+      phoneNumber: ['',Validators.required],
+      address: ['',Validators.required],
+      geographicalArea: ['',Validators.required],
+     
 
 
     });
@@ -54,7 +65,7 @@ export class GestionsellerComponent implements OnInit {
 
   ngOnInit() {
     this.service.getSellers().subscribe(vendeurs => {
-      this.arrSellers = vendeurs;
+      this.arrSellers = vendeurs.filter(vendeur=>vendeur.role=='vendeur');
     })
   }
 
@@ -67,6 +78,14 @@ export class GestionsellerComponent implements OnInit {
         this.sellerForm.get('lastName').setValue(this.seller.lastName);
         this.sellerForm.get('hiringDate').setValue(this.datePipe.transform(this.seller.hiringDate, "yyyy-MM-dd"));
         this.sellerForm.get('username').setValue(this.seller.username);
+        this.sellerForm.get('email').setValue(this.seller.email);
+        this.sellerForm.get('phoneNumber').setValue(this.seller.phoneNumber);
+        this.sellerForm.get('geographicalArea').setValue(this.seller.geographicalArea);
+        this.sellerForm.get('address').setValue(this.seller.address);
+
+
+
+
         console.log(this.seller);
       });
   }
@@ -101,7 +120,7 @@ export class GestionsellerComponent implements OnInit {
 
     this.service.addSeller(form)
       .subscribe(res => {
-        location.reload();
+      location.reload();
         console.log(form)
       }, (err) => {
         console.log(err);

@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { SellersidebarComponent } from './sellersidebar/sellersidebar.component';
 
 @NgModule({
   imports: [
@@ -14,12 +15,14 @@ import { SidebarComponent } from './sidebar/sidebar.component';
   declarations: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SellersidebarComponent
   ],
   exports: [
     FooterComponent,
     NavbarComponent,
-    SidebarComponent
+    SidebarComponent,
+    SellersidebarComponent
   ]
 })
 export class ComponentsModule { }

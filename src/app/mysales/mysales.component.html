@@ -1,0 +1,83 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sellersidebar></app-sellersidebar>
+  <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+</div>
+<app-navbar></app-navbar>
+
+<div class="main-panel">
+
+  <ng-template matStepLabel>In </ng-template>
+
+  <div class="container-fluid">
+    <div>
+
+      <div class="card">
+        <div class="card-header card-header-danger">
+          <h4 class="card-title">Mes expéditions</h4>
+          <p class="card-category"></p>
+        </div>
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header card-header-danger">
+                <h4 class="card-title ">Liste de toutes mes expéditions</h4>
+    
+              </div>
+              <div class="card-body">
+    
+                <div class="table-responsive">
+                  <table class="table" >
+                    <thead class=" text-primary">
+                      <th> Type </th>
+                      <th> départ</th>
+                      <th>Destination</th>
+                      <th>Date d'expédition</th>
+                      <th>poids</th>
+                      <th>quantité</th>
+                      <th>Montant</th>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let sale of arrSaleBySellers">
+                        <td>{{sale.typeofPackage}}</td>
+                        <td>{{sale.departurePackage}}</td>
+                        <td>{{sale.destinationPackage}}</td>
+                        <td>{{sale.dateOfSale | date }}</td>
+                        <td>{{sale.weight }}</td>
+                        <td>{{sale.quantity }}</td>
+                        <td>{{sale.amount }}</td>
+
+                        
+                      </tr>
+    
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+    
+        </div>
+
+        
+
+      </div>
+
+
+    </div>
+
+
+
+
+
+
+  </div>
+
+
+
+  <div>
+    <button mat-button matStepperPrevious>Back</button>
+  </div>
+
+</div>

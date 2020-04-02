@@ -1,18 +1,23 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+    <app-sidebar></app-sidebar>
+
+    <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+  </div>
+  <div class="main-panel">
+    <app-navbar></app-navbar>
 
 <div class="main-content">
+
         
   <div class="container-fluid">
-        
+
       <div class="row">
-            <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="card card-stats">
-                    </div>
-                </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+           
+          <div class="col-lg-4 col-md-8 col-sm-8">
               <div class="card card-stats">
-                  <div class="card-header card-header-warning card-header-icon">
+                  <div class="card-header card-header-danger card-header-icon">
                       <div class="card-icon">
-                          <i class="material-icons">content_copy</i>
+                          <i class="material-icons">assignment_ind</i>
                       </div>
                       <p class="card-category">Nombre de Vendeurs Disponibles</p>
                       <h3 class="card-title">{{SellerNumber}}
@@ -22,11 +27,11 @@
                  
               </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-8 col-sm-8">
               <div class="card card-stats">
-                  <div class="card-header card-header-success card-header-icon">
+                  <div class="card-header card-header-danger card-header-icon">
                       <div class="card-icon">
-                          <i class="material-icons">store</i>
+                          <i class="material-icons">euro_symbol</i>
                       </div>
                       <p class="card-category">Revenu total Pour <br> Aujourd'hui</p>
                       <h3 class="card-title">{{TotalAmount}} €</h3>
@@ -34,13 +39,13 @@
                   
               </div>
           </div>
-          <div class="col-lg-3 col-md-6 col-sm-6">
+          <div class="col-lg-4 col-md-8 col-sm-8">
               <div class="card card-stats">
                   <div class="card-header card-header-danger card-header-icon">
                       <div class="card-icon">
                           <i class="material-icons">info_outline</i>
                       </div>
-                      <p class="card-category">Nombre de ventes Aujourd'hui</p>
+                      <p class="card-category">Nombre de ventes <br> Aujourd'hui</p>
                       <h3 class="card-title">{{TodaySales}}</h3>
                   </div>
                   
@@ -51,7 +56,7 @@
       </div>
       <div class="row">
           
-          <div class="col-md-4">
+          <div class="col-md-6">
               <div class="card card-chart">
                   <div class="card-header card-header-success">
                       <div class="ct-chart" id="dailySalesChart"></div>
@@ -68,7 +73,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-md-4">
+          <div class="col-md-6">
               <div class="card card-chart">
                   <div class="card-header card-header-warning">
                       <div class="ct-chart" id="websiteViewsChart"></div>
@@ -76,7 +81,7 @@
                   <div class="card-body">
                       <h4 class="card-title">Revenu pendant les 7 derniers jours</h4>
                       <p class="card-category">
-                            <span class="text-success"> Total des revenus : :</span>  {{sixdaysBeforeTotalAmount+fivedaysBeforeTotalAmount+fourdaysBeforeTotalAmount+threedaysBeforeTotalAmount+twodaysBeforeTotalAmount+dayBeforeTotalAmount+TotalAmount}} €</p>
+                            <span class="text-success"> Total des revenus : :</span>  {{total}} €</p>
                   </div>
                   <div class="card-footer">
                       <div class="stats">
@@ -84,7 +89,7 @@
                   </div>
               </div>
           </div>
-          <div class="col-md-4">
+       <!--   <div class="col-md-4">
               <div class="card card-chart">
                   <div class="card-header card-header-danger">
                       <div class="ct-chart" id="completedTasksChart"></div>
@@ -98,7 +103,7 @@
                       </div>
                   </div>
               </div>
-          </div>
+          </div>-->
       </div>
       <div class="row">
           <div class="col-lg-6 col-md-12">
@@ -134,3 +139,4 @@
 
 </div>
 
+  </div>

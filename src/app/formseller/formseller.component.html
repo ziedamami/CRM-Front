@@ -1,0 +1,338 @@
+<div class="sidebar" data-color="danger" data-background-color="white" data-image="./assets/img/sidebar-1.jpg">
+  <app-sellersidebar></app-sellersidebar>
+  <div class="sidebar-background" style="background-image: url(./assets/img/sidebar-4.jpg)"></div>
+</div>
+<app-navbar></app-navbar>
+
+<div class="main-panel">
+
+  <form [formGroup]="saleFormGroup" (ngSubmit)="onaddSaleFormSubmit(saleFormGroup.value)">
+    <ng-template matStepLabel>Informations Generales Du Colis </ng-template>
+
+    <div class="container-fluid">
+      <div>
+
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Ajouter une vente</h4>
+            <p class="card-category">Completez les champs</p>
+          </div>
+
+          <div class="card-body">
+            <div class="form" *ngFor="let sale of bill.sales">
+              <mat-form-field color="accent">
+                <input matInput #input class="test">
+
+                <input value="plis" type="radio" formControlName="typeofPackage"
+                  [(ngModel)]="saleFormGroup.typeofPackage"> Plis
+                <input value="colis" type="radio" formControlName="typeofPackage"
+                  [(ngModel)]="saleFormGroup.typeofPackage">
+                Colis
+                <input value="palette" type="radio" formControlName="typeofPackage"
+                  [(ngModel)]="saleFormGroup.typeofPackage">
+                Palette
+                <input value="container" type="radio" formControlName="typeofPackage"
+                  [(ngModel)]="saleFormGroup.typeofPackage">
+                Container
+
+                <button mat-button matStepperNext type="button" class="btn btn-danger pull-right"
+                  *ngIf="saleFormGroup.typeofPackage==='palette'">Télécharger document
+                </button>
+
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+              <br>
+              <mat-form-field *ngIf="saleFormGroup.typeofPackage==='container'">
+                <mat-label>Type de container</mat-label>
+                <select matNativeControl required>
+                  <option value="DRY 20">DRY – Conteneur pour tous les usages 20'</option>
+                  <option value="DRY 40">DRY – Conteneur pour tous les usages 40'</option>
+                  <option value="DRY 40HC">DRY – Conteneur pour tous les usages 40'HC</option>
+                  <option value="DRY 45 HC">DRY – Conteneur pour tous les usages 45'HC</option>
+                  <option value="REEFER 20">REEFER – Conteneur sous température dirigée 20'</option>
+                  <option value="REEFER 40">REEFER – Conteneur sous température dirigée 40'</option>
+                  <option value="REEFER 45 HC">REEFER – Conteneur sous température dirigée 45'HC</option>
+                  <option value="OPEN TOP 20">OPEN TOP – Conteneur à toit rétractable 20'</option>
+                  <option value="OPEN TOP 40">OPEN TOP – Conteneur à toit rétractable 40'</option>
+                  <option value="FLAT RACK 20">FLAT RACK – Conteneur plateau 20'</option>
+                  <option value="FLAT RACK 40">FLAT RACK – Conteneur plateau 40'</option>
+                </select>
+              </mat-form-field>
+
+
+
+
+            </div>
+
+            <div class="form" *ngIf="saleFormGroup.typeofPackage==='container'">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Ville  de positionnement"
+                  formControlName="positionCity" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Port  de chargement"
+                  formControlName="DepartPort" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Pays de départ" formControlName="DepartTown"
+                  style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div class="form" *ngIf="saleFormGroup.typeofPackage !=='container'">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Veuillez indiquer votre depart"
+                  formControlName="departurePackage" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div class="form" *ngIf="saleFormGroup.typeofPackage!=='container'">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Veuillez indiquer votre destination"
+                  type="text" formControlName="destinationPackage" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+            <div class="form" *ngIf="saleFormGroup.typeofPackage==='container'">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Port  de Livraison"
+                  formControlName="DelevryPort" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Pays de Livraison"
+                  formControlName="DestionationTown" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+            Colis :
+
+            <br>
+            <div class="form" *ngFor="let sale of bill.sales">
+              <mat-form-field color="accent">
+                <input matInput #nombre class="form-control" placeholder="Nombre de colis" type="number"
+                  formControlName="quantity" [(ngModel)]="sale.quantity" style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #poids class="form-control" placeholder="Poids par unité" type="text"
+                  formControlName="weight" style="width: 300px;" [(ngModel)]="sale.weight" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+              <mat-form-field color="accent">
+                <input matInput #montant class="form-control" placeholder="Montant" [(ngModel)]="sale.amount"
+                  value="{{nombre.value*((4*(((poids.value | round )-0.5))/0.5)+12)}}" type="text"
+                  formControlName="amount" style="width: 300px;" disabled>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+
+
+            Dimensions :
+
+            <br>
+            <div class="form">
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Longueur" type="text" formControlName="length"
+                  style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Largeur" type="text" formControlName="width"
+                  style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field color="accent">
+                <input matInput #input class="form-control" placeholder="Hauteur" type="text" formControlName="height"
+                  style="width: 300px;" required>
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+            <br>
+
+            Incoterms :
+
+
+            <div class="form">
+              <mat-form-field color="accent">
+
+                <input matInput #input class="test">
+
+
+                <input value="Multimodaux" type="radio" formControlName="incoterm" [(ngModel)]="saleFormGroup.incoterm">
+                Multimodaux
+                <input value="Maritimes" type="radio" formControlName="incoterm" [(ngModel)]="saleFormGroup.incoterm">
+                Maritimes
+
+
+
+
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+
+              <mat-form-field *ngIf="saleFormGroup.incoterm==='Multimodaux'">
+                <mat-label>Incoterms Multimodaux </mat-label>
+                <select matNativeControl required>
+                  <option value="EXW ">EXW – Ex-Works – À l’usine</option>
+                  <option value="FCA ">FCA – Free-CArrier – Franco-transporteur</option>
+                  <option value="CPT ">CPT – Carriage Paid To – Port payé jusqu’à</option>
+                  <option value="CIP ">CIP – Carriage Insurance Paid to – Port payé, assurance comprise jusqu’à</option>
+                  <option value=" DAP ">DAP – Delivered At Place – Rendu au lieu de destination</option>
+                  <option value="DPU ">DPU – Delivered at Place Unloaded – Rendu au lieu de destination déchargé
+                  </option>
+                  <option value="DDP ">DDP – Delivered Duty Paid – Rendu droits acquittés</option>
+
+                </select>
+              </mat-form-field>
+
+              <button mat-button matStepperNext type="button" class="btn btn-danger pull-right"
+                *ngIf="saleFormGroup.incoterm==='Multimodaux'" (click)="openModal('custom-modal-1')">En Savoir plus ..
+              </button>
+
+              <mat-form-field *ngIf="saleFormGroup.incoterm==='Maritimes'">
+                <mat-label>Incoterms Maritimes </mat-label>
+                <select matNativeControl required>
+                  <option value="FAS ">FAS – Free Alongside Ship – Franco le long du navire</option>
+                  <option value="FOB ">FOB – Free On Board – Franco à bord </option>
+                  <option value="CFR ">CFR – Cost and FReight – Coût et Fret</option>
+                  <option value="CIF ">CIF – Cost, Insurance and Freight – Coût, assurance et fret</option>
+
+
+                </select>
+              </mat-form-field>
+
+              <button mat-button matStepperNext type="button" class="btn btn-danger pull-right"
+                *ngIf="saleFormGroup.incoterm==='Maritimes'" (click)="openModal('custom-modal-2')">En Savoir plus ..
+              </button>
+              <br>
+
+
+
+
+
+            </div>
+
+            <br>
+
+            Autres informations :
+
+
+            <div class="form">
+              <mat-form-field color="accent">
+
+                <input matInput #input class="test">
+                Mandat de représentativité en douane :
+
+                <input value="oui" type="radio" formControlName="mandate" [(ngModel)]="saleFormGroup.mandate"> Oui
+                <input value="non" type="radio" formControlName="mandate" [(ngModel)]="saleFormGroup.mandate">
+                Non
+
+
+
+
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+            </div>
+
+
+            <div class="form">
+
+              <mat-form-field color="accent">
+
+                <input matInput #input class="test">
+                marchandise dangereuse :
+
+
+                <input value="oui" type="radio" formControlName="danger" [(ngModel)]="saleFormGroup.danger"> Oui
+                <input value="non" type="radio" formControlName="danger" [(ngModel)]="saleFormGroup.danger">
+                Non
+
+
+
+
+                <mat-error *ngIf="saleFormGroup.invalid"></mat-error>
+              </mat-form-field>
+              <br>
+
+
+
+
+
+            </div>
+
+
+
+            <br>
+            <button mat-button matStepperNext type="submit" class="btn btn-danger pull-right">Enregistrer
+            </button>
+
+
+
+
+            <div class="clearfix"></div>
+
+            <div>
+              <div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+
+
+
+
+    </div>
+
+
+
+
+  </form>
+  <jw-modal id="custom-modal-1">
+    <h3>Incoterms Multimodaux</h3>
+    <form>
+      <div>
+        <img src="/assets/img/MULTIMODAUX.png" />
+      </div>
+
+
+      <button class="btn btn-danger" (click)="closeModal('custom-modal-1');">Close</button>
+
+
+    </form>
+  </jw-modal>
+  <jw-modal id="custom-modal-2">
+    <h3>Incoterms Multimodaux</h3>
+    <form>
+      <div>
+        <img src="/assets/img/MARITIMES.png" />
+      </div>
+
+
+      <button class="btn btn-danger" (click)="closeModal('custom-modal-2');">Close</button>
+
+
+    </form>
+  </jw-modal>
+</div>

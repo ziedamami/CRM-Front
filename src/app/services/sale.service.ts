@@ -28,7 +28,7 @@ export class SaleService {
 
   
   getAllSales (): Observable<SaleResponse[]> {
-    return this.http.get<SaleResponse[]>('http://localhost:8080/api/all_sales/')
+    return this.http.get<SaleResponse[]>('https://app-easy-crm.herokuapp.com/api/all_sales/')
       .pipe(
         tap(heroes => console.log('fetched slaes')),
         catchError(this.handleError('getsales', []))
@@ -36,11 +36,19 @@ export class SaleService {
   }
 
   getAllSalesbySeller (id): Observable<SaleResponse[]> {
-    return this.http.get<SaleResponse[]>('http://localhost:8080/api/seller_sales/'+id)
+    return this.http.get<SaleResponse[]>('https://app-easy-crm.herokuapp.com/api/seller_sales/'+id)
       .pipe(
         tap(heroes => console.log('fetched sales')),
         catchError(this.handleError('getsales', []))
       );
+  }
+
+  addSale(sale): Observable<any> {
+    const url = `https://app-easy-crm.herokuapp.com/api/add_sale`;
+    return this.http.post(url, sale, httpOptions).pipe(
+      tap(_ => console.log(`added sale `)),
+      catchError(this.handleError<any>('addsale'))
+    );
   }
 
  
